@@ -41,6 +41,40 @@ h2 {
   font-weight: 200;
 }
 
+.player .widget {
+  max-width:600px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  height:166px;
+}
+
+.player .widget.idle {
+  background:#eee;
+  padding:1em;
+}
+
+ul.actions {
+  list-style:none;
+  padding:0;
+}
+ul.actions li {
+  float:left;
+}
+ul.actions li a {
+  display:block;
+  text-indent:-999em;
+}
+ul.actions li a.next:before {
+  width:40px;
+  height:40px;
+  content:'▶';
+}
+ul.actions:after {
+  clear:both;
+  display:block;
+  content:'';
+}
+
 .dd {
   position: relative;
   display: block;

@@ -3,9 +3,10 @@ define([
   'soundcloud',
   'collections/playlist',
   'views/playlist',
+  'views/player',
   'views/404'
 ],
-function (Backbone, SoundCloud, Playlist, PlaylistView, View404) {
+function (Backbone, SoundCloud, Playlist, PlaylistView, Player, View404) {
   var Router = Backbone.Router.extend({
 
     initialize: function () {
@@ -25,6 +26,12 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, View404) {
     index: function () {
 
       var el = $('#main').empty();
+
+      var player = new Player({
+        collection: this.playlist
+      });
+      el.append(player.$el);
+      player.render();
 
       var playlistView = new PlaylistView({
         collection: this.playlist
