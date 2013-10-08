@@ -26,11 +26,13 @@ function (Backbone, Track) {
       var selectedModel = this.selectedModel;
 
       // remove elements from storage that are not in the new collection
+      var toDestroy = [];
       this.each(function (model) {
         if (!_.contains(models, model)) {
-          model.destroy();
+          toDestroy.push(model)
         }
       });
+      _.invoke(toDestroy, 'destroy');
 
       Backbone.Collection.prototype.reset.apply(this, arguments);
 
