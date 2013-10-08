@@ -9,6 +9,7 @@ require.config({
   paths: {
     jquery: "http://code.jquery.com/jquery-2.0.0.min",
     jquerymockjax: "//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.5.1/jquery.mockjax",
+    'jquery-nestable': './lib/jquery.nestable',
     underscore: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min",
     backbone: "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min",
     'backbone-localstorage': './lib/backbone.localStorage',
@@ -29,6 +30,10 @@ require.config({
     },
     
     jquerymockjax: {
+      deps: ['jquery']
+    },
+
+    'jquery-nestable': {
       deps: ['jquery']
     },
 

@@ -1,15 +1,20 @@
 define([
   'backbone',
   'soundcloud',
+  'collections/playlist',
+  'views/playlist',
   'views/404'
 ],
-function (Backbone, SoundCloud, View404) {
+function (Backbone, SoundCloud, Playlist, PlaylistView, View404) {
   var Router = Backbone.Router.extend({
 
     initialize: function () {
       SoundCloud.initialize({
         client_id: 'f08221ce848e18e10ac59d9b79bc5d1d'
       });
+
+      var playlist = this.playlist = new Playlist();
+      playlist.fetch();
     },
 
     routes: {
@@ -18,6 +23,14 @@ function (Backbone, SoundCloud, View404) {
     },
 
     index: function () {
+
+      var el = $('#main').empty();
+
+      var playlistView = new PlaylistView({
+        collection: this.playlist
+      });
+      el.append(playlistView.$el);
+      playlistView.render();
     },
 
     show404Page: function() {

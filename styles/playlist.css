@@ -35,3 +35,128 @@ strong {
 #main {
   padding: 1em;
 }
+
+h2 {
+  margin-bottom:.2em;
+  font-weight: 200;
+}
+
+.dd {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+  list-style: none;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dd-item,
+.dd-placeholder {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.dd-handle {
+    display: block;
+    height: 30px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    /*border: 1px solid #ccc;*/
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 0;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    cursor: grab;;
+    width: 30px;
+    text-indent: -999em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.dd-handle:hover {
+    color: #2ea8e5;
+}
+
+.dd-handle:before {
+    content: '≡'; 
+    display: block; 
+    position: absolute; 
+    left: 0; 
+    top: 6px; 
+    width: 100%; 
+    text-align: center; 
+    text-indent: 0; 
+    font-size: 20px; 
+    font-weight: normal;
+}
+
+
+.dd-placeholder {
+    margin: 5px 0;
+    padding: 0;
+    min-height: 30px;
+    background: #f2fbff;
+    border: 1px dashed #b6bcbf;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.dd-dragel {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+}
+.dd-dragel > .dd-item .dd-handle {
+    margin-top: 0;
+}
+.dd-dragel .dd-handle {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+.dd-content {
+    display: block;
+    height: 30px;
+    margin: 5px 0;
+    padding: 5px 10px 5px 40px;
+    text-decoration: none;
+    font-size:14px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background:rgba(255, 255, 255, 0.9);
+
+}
+.dd-content:hover {
+    color: #2ea8e5;
+    background: #fff;
+}
+
+.dd-dragel > .dd-item > .dd-content {
+    margin: 0;
+}
