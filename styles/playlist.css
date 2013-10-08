@@ -193,7 +193,7 @@ ul.actions:after {
     white-space: nowrap;
     text-overflow: ellipsis;
     background:rgba(255, 255, 255, 0.9);
-
+    cursor:default;
 }
 .dd-content:hover {
     color: #2ea8e5;
