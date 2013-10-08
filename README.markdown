@@ -19,3 +19,11 @@ When app is run via `grunt server`, tests are available at `http://localhost:800
 
 Make sure `phantomjs` is available in your `$PATH`. Then run `spec/testrunner.sh`.
 
+
+## Tested ##
+
+ - Chrome 29
+ - Safari 6.0
+ - Firefox 23
+ - Internet Explorer 10
+ - Mobile Safari 6.1

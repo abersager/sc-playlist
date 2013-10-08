@@ -22,6 +22,7 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
     routes: {
       "": "index",
       "add/*url": "add",
+      "add": "add",
       "*url": "show404Page"
     },
 
@@ -43,13 +44,16 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
     },
 
     add: function (url) {
+
       var track;
-      this.listenToOnce(this.playlist, 'add', function (model) {
-        track = model 
-      });
-      this.playlist.add({
-        permalink_url: url
-      });
+      if (url) {
+        this.listenToOnce(this.playlist, 'add', function (model) {
+          track = model 
+        });
+        this.playlist.add({
+          permalink_url: url
+        });
+      }
 
       var view = new AddView({
         el: $('#main'),

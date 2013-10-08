@@ -1,15 +1,33 @@
-<p>
-<% if (model.get('invalid')) { %>
-  Could not retrieve track details.
-<% } else { %>
-  Track added to playlist. 
-  <% if (model.get('title')) { %>
-  Title: <%= model.get('title') %>
+<% if (model) { %>
+  <h2>Adding tracks</h2>
+  <p>
+  <% if (model.get('invalid')) { %>
+    Could not retrieve track details.
   <% } else { %>
-  Retrieving details…
+    Track added to playlist. 
+    <% if (model.get('title')) { %>
+    Title: <%= model.get('title') %>
+    <% } else { %>
+    Retrieving details…
+    <% } %>
   <% } %>
-<% } %>
-</p>
+  </p>
 
-<p><a class="back" href="#">Go back</a></p>
+  <p><a class="back" href="#">Go back</a></p>
+<% } else { %>
+  <h2>How to add tracks</h2>
+
+  <p>
+    Drag the following link to your bookmarks / favorites bar:
+    <a href="<%= href %>">Add to playlist</a>
+  </p>
+
+  <p>
+    Browse <a href="https://soundcloud.com">SoundCloud.com</a>. If you find a
+    track you like, click the bookmark to add the track to your playlist.
+  </p>
+<% } %>
+
 <p><a href="/">Go to playlist</a></p>
+
+

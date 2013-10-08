@@ -9,7 +9,23 @@ function (View, template) {
     initialize: function (attrs, options) {
       View.prototype.initialize.apply(this, arguments);
 
-      this.listenTo(this.model, 'change', this.render);
+      if (this.model) {
+        this.listenTo(this.model, 'change', this.render);
+      }
+    },
+
+    serialize: function () {
+      var href = [
+        "javascript:document.location = '",
+        window.location.protocol,
+        "//",
+        window.location.host,
+        "/add/' + encodeURI(document.location);"
+      ].join('');
+
+      return {
+        href: encodeURI(href)
+      }
     },
 
     events: {
