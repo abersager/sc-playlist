@@ -15,6 +15,7 @@ function (View, TrackView, template) {
     events: {
       'click a.previous': 'onPrevious',
       'click a.next': 'onNext',
+      'click a.clear': 'onClear',
       'click .dd li': 'onClick',
       'change': 'onChangeOrder'
     },
@@ -46,6 +47,10 @@ function (View, TrackView, template) {
     onNext: function () {
       this.collection.next({ wrapAround: true });
       return false;
+    },
+
+    onClear: function () {
+      this.collection.reset([]);
     },
 
     onClick: function (e) {
