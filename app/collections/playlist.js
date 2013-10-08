@@ -34,6 +34,36 @@ function (Backbone, Track) {
 
     save: function () {
       this.invoke('save');
+    },
+
+    /**
+     * Changes currently selected item and notifies listeners
+     * @param {Number} [index=undefined] Index of item to select. Leave empty to unselect
+     * @param {Object} [options={}] Options
+     * @param {Boolean} [options.silent=false] Suppress change:selected event
+     */
+    select: function(index, options) { 
+      if(index === this.selectedIndex) {
+        return;
+      }
+      
+      options = _.extend({
+        silent: false
+      }, options);
+
+      var model = this.models[index];
+
+      if (this.length) {
+        this.selectedModel = model;
+        this.selectedIndex = index;
+      } else {
+        this.selectedModel = null;
+        this.selectedIndex = null;
+      }
+
+      if (!options.silent) {
+        this.trigger("change:selected", model, index);
+      }
     }
     
 
