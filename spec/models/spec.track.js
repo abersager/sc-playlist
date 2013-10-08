@@ -56,6 +56,29 @@ function (Track) {
         expect(track.get('id')).not.toEqual('123');
         expect(track.get('foo')).toEqual('bar');
       });
+
+      it("removes track from collection when SoundCloud errors", function () {
+        var track = new Track({
+          permalink_url: 'test_permalink'
+        });
+        track.collection = {
+          remove: jasmine.createSpy()
+        };
+
+        expect(get.argsForCall[0][0]).toEqual('/resolve');
+        expect(get.argsForCall[0][1]).toEqual({ url: 'test_permalink' });
+
+        var trackInfo = {
+          errors: [{
+              error_message: "404 - Not Found"
+          }]
+        };
+
+        var callback = get.argsForCall[0][2];
+        callback(trackInfo);
+
+        expect(track.collection.remove).toHaveBeenCalledWith(track);
+      });
     });
   });
 });
