@@ -19,6 +19,15 @@ function (View, template) {
         this.$el.addClass('selected');
       }
       this.$el.attr('data-id', this.index + 1);
+    },
+
+    events: {
+      'click a.remove': 'onRemove'
+    },
+
+    onRemove: function (e) {
+      this.model.collection.remove(this.model);
+      return false;
     }
   });
 

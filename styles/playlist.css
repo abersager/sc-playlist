@@ -94,6 +94,14 @@ ul.actions:after {
     list-style: none;
 }
 
+.dd-item.selected .dd-content {
+    border-color: #ffcc66;
+}
+.dd-item.selected .dd-content:before {
+    display:inline;
+    content: '▶';
+}
+
 .dd-item,
 .dd-placeholder {
     display: block;
@@ -113,8 +121,6 @@ ul.actions:after {
     color: #333;
     text-decoration: none;
     font-weight: bold;
-    -webkit-border-radius: 3px;
-            border-radius: 3px;
     position: absolute;
     margin: 0;
     left: 0;
@@ -163,6 +169,10 @@ ul.actions:after {
 .dd-dragel > .dd-item .dd-handle {
     margin-top: 0;
 }
+.dd-dragel > .dd-item > .dd-content {
+    margin: 0;
+}
+
 .dd-dragel .dd-handle {
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
@@ -190,6 +200,6 @@ ul.actions:after {
     background: #fff;
 }
 
-.dd-dragel > .dd-item > .dd-content {
-    margin: 0;
+a.remove {
+  float:right;
 }
