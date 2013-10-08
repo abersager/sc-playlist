@@ -5,6 +5,11 @@ define([
 function (Playlist, Track) {
   describe("Playlist", function () {
 
+    afterEach(function() {
+      var playlist = new Playlist();
+      playlist.localStorage._clear();
+    });
+
     describe("localStorage", function () {
 
       beforeEach(function() {
@@ -43,8 +48,6 @@ function (Playlist, Track) {
         playlist = new Playlist();
         playlist.fetch();
         expect(playlist.at(0).get('stage')).toEqual('three');
-
-        playlist.localStorage._clear();
       });
     });
 
@@ -93,6 +96,72 @@ function (Playlist, Track) {
         collection.select(null);
         expect(spy.argsForCall[0][0]).toEqual(null);
         expect(spy.argsForCall[0][1]).toEqual(null);
+      });
+    });
+
+    describe("previous / next", function () {
+
+      var playlist;
+      beforeEach(function() {
+        playlist = new Playlist([
+          { stage: 'one' },
+          { stage: 'two' },
+          { stage: 'three' }
+        ]);
+      });
+
+      describe("previous", function () {
+        it("selects previous item", function () {
+          playlist.select(2);
+          playlist.previous();
+          expect(playlist.selectedModel).toBe(playlist.at(1));
+          playlist.previous();
+          expect(playlist.selectedModel).toBe(playlist.at(0));
+        });
+
+        it("does not wrap around by default", function () {
+          playlist.select(0);
+          playlist.previous();
+          expect(playlist.selectedModel).toBe(playlist.at(0));
+        });
+
+        it("can wrap around", function () {
+          playlist.select(0);
+          playlist.previous({ wrapAround: true });
+          expect(playlist.selectedModel).toBe(playlist.at(2));
+        });
+
+        it("selects last item if nothing was selected", function () {
+          playlist.previous();
+          expect(playlist.selectedModel).toBe(playlist.at(2));
+        });
+      });
+
+      describe("next", function () {
+        it("selects next item", function () {
+          playlist.select(0);
+          playlist.next();
+          expect(playlist.selectedModel).toBe(playlist.at(1));
+          playlist.next();
+          expect(playlist.selectedModel).toBe(playlist.at(2));
+        });
+
+        it("does not wrap around by default", function () {
+          playlist.select(2);
+          playlist.next();
+          expect(playlist.selectedModel).toBe(playlist.at(2));
+        });
+
+        it("can wrap around", function () {
+          playlist.select(2);
+          playlist.next({ wrapAround: true });
+          expect(playlist.selectedModel).toBe(playlist.at(0));
+        });
+
+        it("selects first item if nothing was selected", function () {
+          playlist.next();
+          expect(playlist.selectedModel).toBe(playlist.at(0));
+        });
       });
     });
   });

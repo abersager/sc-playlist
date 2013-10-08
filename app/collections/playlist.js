@@ -64,6 +64,38 @@ function (Backbone, Track) {
       if (!options.silent) {
         this.trigger("change:selected", model, index);
       }
+    },
+
+    previous: function (options) {
+      options = _.extend({
+        wrapAround: false
+      }, options);
+
+      var index;
+      if (!_.isNumber(this.selectedIndex)) {
+        index = this.length - 1;
+      } else if (options.wrapAround) {
+        index = (this.length + this.selectedIndex - 1) % this.length;
+      } else {
+        index = Math.max(this.selectedIndex - 1, 0);
+      }
+      this.select(index);
+    },
+    
+    next: function (options) {
+      options = _.extend({
+        wrapAround: false
+      }, options);
+
+      var index;
+      if (!_.isNumber(this.selectedIndex)) {
+        index = 0;
+      } else if (options.wrapAround) {
+        index = (this.selectedIndex + 1) % this.length;
+      } else {
+        index = Math.min(this.selectedIndex + 1, this.length - 1);
+      }
+      this.select(index);
     }
     
 
