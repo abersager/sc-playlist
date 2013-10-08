@@ -32,6 +32,9 @@ function (View, template) {
       'click a.back': function () {
         window.history.back();
         return false;
+      },
+      'click a.random': function (e) {
+        this.router.addRandomPlaylist();
       }
     }
   });

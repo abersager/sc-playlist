@@ -57,9 +57,22 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
 
       var view = new AddView({
         el: $('#main'),
-        model: track
+        model: track,
+        router: this
       });
       view.render();
+    },
+
+    addRandomPlaylist: function () {
+      SoundCloud.get('/playlists/868.json', _.bind(function (playlist) {
+        var tracks = _.map(playlist.tracks, function (track) {
+          return {
+            permalink_url: track.permalink_url
+          };
+        });
+        this.playlist.reset(tracks);
+        this.navigate('/');
+      }, this));
     },
 
     show404Page: function() {
