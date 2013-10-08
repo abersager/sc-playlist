@@ -51,6 +51,76 @@ function (Playlist, Track) {
       });
     });
 
+    describe("reset", function () {
+      var playlist;
+      beforeEach(function() {
+        playlist = new Playlist([
+          { stage: 'one' },
+          { stage: 'two' },
+          { stage: 'three' }
+        ]);
+      });
+
+      it("preserves the currently selected model if possible", function () {
+        var models = _.clone(playlist.models);
+
+        playlist.select(1);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(1);
+
+        playlist.reset([models[1], models[2]]);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(0);
+      });
+
+      it("unselects if the previously selected model is not in the collection anymore", function () {
+        var models = _.clone(playlist.models);
+
+        playlist.select(1);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(1);
+
+        playlist.reset([models[0], models[2]]);
+        expect(playlist.selectedModel).toEqual(null);
+        expect(playlist.selectedIndex).toEqual(null);
+      });
+    });
+
+    describe("remove", function () {
+      var playlist;
+      beforeEach(function() {
+        playlist = new Playlist([
+          { stage: 'one' },
+          { stage: 'two' },
+          { stage: 'three' }
+        ]);
+      });
+
+      it("preserves the currently selected model if possible", function () {
+        var models = _.clone(playlist.models);
+
+        playlist.select(1);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(1);
+
+        playlist.remove(models[0]);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(0);
+      });
+
+      it("unselects if the previously selected model is not in the collection anymore", function () {
+        var models = _.clone(playlist.models);
+
+        playlist.select(1);
+        expect(playlist.selectedModel).toBe(models[1]);
+        expect(playlist.selectedIndex).toEqual(1);
+
+        playlist.remove(models[1]);
+        expect(playlist.selectedModel).toEqual(null);
+        expect(playlist.selectedIndex).toEqual(null);
+      });
+    });
+
     describe("select", function () {
       
       var collection, spy;

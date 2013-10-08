@@ -25,11 +25,26 @@ function (Backbone, Track) {
 
       Backbone.Collection.prototype.reset.apply(this, arguments);
 
+      // restore selection of previously selected model
       var index = this.indexOf(selectedModel);
-      if (index != -1) {
-        // restore selection of previously selected model
-        this.select(index, { silent: true });
+      if (index === -1) {
+        index = null;
       }
+      this.select(index, { silent: true });
+    },
+
+    remove: function (models, options) {
+      // preserve current selection if possible
+      var selectedModel = this.selectedModel;
+
+      Backbone.Collection.prototype.remove.apply(this, arguments);
+
+      // restore selection of previously selected model
+      var index = this.indexOf(selectedModel);
+      if (index === -1) {
+        index = null;
+      }
+      this.select(index, { silent: true });
     },
 
     save: function () {
