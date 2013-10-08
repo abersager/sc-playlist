@@ -1,9 +1,16 @@
 define([
   'backbone',
+  'soundcloud',
   'views/404'
 ],
-function (Backbone, View404) {
+function (Backbone, SoundCloud, View404) {
   var Router = Backbone.Router.extend({
+
+    initialize: function () {
+      SoundCloud.initialize({
+        client_id: 'f08221ce848e18e10ac59d9b79bc5d1d'
+      });
+    },
 
     routes: {
       "": "index",

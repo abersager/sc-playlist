@@ -13,7 +13,9 @@ require.config({
     backbone: "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min",
     'backbone-localstorage': './lib/backbone.localStorage',
     moment: "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min",
-    tpl: "./lib/tpl"
+    tpl: "./lib/tpl",
+    soundcloud: "http://connect.soundcloud.com/sdk",
+    'soundcloud-widget': 'https://w.soundcloud.com/player/api'
   },
 
   shim: {
@@ -28,6 +30,10 @@ require.config({
     
     jquerymockjax: {
       deps: ['jquery']
+    },
+
+    soundcloud: {
+      exports: 'SC'
     }
   }
 
