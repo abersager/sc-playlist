@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: black;
+  color: white;
+  padding: 1em;
+}
+header h1 {
+  margin: 0;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+header a {
+  color: white;
+  text-decoration:none;
+}
+
+a {
+  color: black;
+}
+
+strong {
+  font-weight: 500;
+}
+
+#main {
+  padding: 1em;
+}
