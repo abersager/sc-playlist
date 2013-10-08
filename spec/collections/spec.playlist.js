@@ -5,16 +5,16 @@ define([
 function (Playlist, Track) {
   describe("Playlist", function () {
 
+    beforeEach(function() {
+      spyOn(Track.prototype, "initialize");
+    });
+
     afterEach(function() {
       var playlist = new Playlist();
       playlist.localStorage._clear();
     });
 
     describe("localStorage", function () {
-
-      beforeEach(function() {
-        spyOn(Track.prototype, "initialize");
-      });
 
       it("persists all changes to local storage", function () {
         var playlist = new Playlist();

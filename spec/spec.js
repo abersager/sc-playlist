@@ -1,5 +1,6 @@
 define([
   "./collections/spec.playlist",
+  "./models/spec.track",
   "./views/spec.view",
 ],
 function () {
