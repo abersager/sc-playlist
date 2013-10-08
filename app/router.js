@@ -4,9 +4,10 @@ define([
   'collections/playlist',
   'views/playlist',
   'views/player',
+  'views/add',
   'views/404'
 ],
-function (Backbone, SoundCloud, Playlist, PlaylistView, Player, View404) {
+function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404) {
   var Router = Backbone.Router.extend({
 
     initialize: function () {
@@ -20,6 +21,7 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, View404) {
 
     routes: {
       "": "index",
+      "add/*url": "add",
       "*url": "show404Page"
     },
 
@@ -38,6 +40,22 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, View404) {
       });
       el.append(playlistView.$el);
       playlistView.render();
+    },
+
+    add: function (url) {
+      var track;
+      this.listenToOnce(this.playlist, 'add', function (model) {
+        track = model 
+      });
+      this.playlist.add({
+        permalink_url: url
+      });
+
+      var view = new AddView({
+        el: $('#main'),
+        model: track
+      });
+      view.render();
     },
 
     show404Page: function() {

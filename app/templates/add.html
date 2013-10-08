@@ -1,0 +1,15 @@
+<p>
+<% if (model.get('invalid')) { %>
+  Could not retrieve track details.
+<% } else { %>
+  Track added to playlist. 
+  <% if (model.get('title')) { %>
+  Title: <%= model.get('title') %>
+  <% } else { %>
+  Retrieving details…
+  <% } %>
+<% } %>
+</p>
+
+<p><a class="back" href="#">Go back</a></p>
+<p><a href="/">Go to playlist</a></p>
