@@ -6,7 +6,8 @@ function (Backbone, View404) {
   var Router = Backbone.Router.extend({
 
     routes: {
-      "": "index"
+      "": "index",
+      "*url": "show404Page"
     },
 
     index: function () {
