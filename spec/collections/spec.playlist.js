@@ -75,6 +75,9 @@ function (Playlist, Track) {
 
       it("unselects if the previously selected model is not in the collection anymore", function () {
         var models = _.clone(playlist.models);
+        _.each(models, function (model) {
+          spyOn(model, "destroy").andCallThrough();
+        });
 
         playlist.select(1);
         expect(playlist.selectedModel).toBe(models[1]);
@@ -83,7 +86,12 @@ function (Playlist, Track) {
         playlist.reset([models[0], models[2]]);
         expect(playlist.selectedModel).toEqual(null);
         expect(playlist.selectedIndex).toEqual(null);
+
+        expect(models[0].destroy).not.toHaveBeenCalled();
+        expect(models[1].destroy).toHaveBeenCalled();
+        expect(models[2].destroy).not.toHaveBeenCalled();
       });
+
     });
 
     describe("remove", function () {

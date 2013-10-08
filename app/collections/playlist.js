@@ -18,10 +18,19 @@ function (Backbone, Track) {
     },
 
     reset: function (models, options) {
+      if (!_.isArray(models)) {
+        models = models ? [models] : [];
+      }
+
       // preserve current selection if possible
       var selectedModel = this.selectedModel;
 
-      this.invoke('destroy');
+      // remove elements from storage that are not in the new collection
+      this.each(function (model) {
+        if (!_.contains(models, model)) {
+          model.destroy();
+        }
+      });
 
       Backbone.Collection.prototype.reset.apply(this, arguments);
 
@@ -30,7 +39,7 @@ function (Backbone, Track) {
       if (index === -1) {
         index = null;
       }
-      this.select(index, { silent: true });
+      this.select(index, { silent: index !== null });
     },
 
     remove: function (models, options) {
@@ -44,7 +53,8 @@ function (Backbone, Track) {
       if (index === -1) {
         index = null;
       }
-      this.select(index, { silent: true });
+
+      this.select(index, { silent: index !== null });
     },
 
     save: function () {
