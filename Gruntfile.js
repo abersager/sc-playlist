@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     server: {
+      port: process.env.PORT || "8000",
       host: "0.0.0.0",
       files: {
         "spec.js": "test/spec.js"
