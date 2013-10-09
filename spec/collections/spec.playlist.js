@@ -59,6 +59,12 @@ function (Playlist, Track) {
           { stage: 'two' },
           { stage: 'three' }
         ]);
+        playlist.each(function (model) {
+          model.sound = {
+            play: jasmine.createSpy(),
+            stop: jasmine.createSpy()
+          };
+        });
       });
 
       it("preserves the currently selected model if possible", function () {
@@ -102,6 +108,12 @@ function (Playlist, Track) {
           { stage: 'two' },
           { stage: 'three' }
         ]);
+        playlist.each(function (model) {
+          model.sound = {
+            play: jasmine.createSpy(),
+            stop: jasmine.createSpy()
+          };
+        });
       });
 
       it("preserves the currently selected model if possible", function () {
@@ -139,6 +151,12 @@ function (Playlist, Track) {
           { a: 'two' },
           { a: 'three' }
         ]);
+        collection.each(function (model) {
+          model.sound = {
+            play: jasmine.createSpy(),
+            stop: jasmine.createSpy()
+          };
+        });
         collection.on('change:selected', spy);
       });
       
@@ -186,6 +204,12 @@ function (Playlist, Track) {
           { stage: 'two' },
           { stage: 'three' }
         ]);
+        playlist.each(function (model) {
+          model.sound = {
+            play: jasmine.createSpy(),
+            stop: jasmine.createSpy()
+          };
+        });
       });
 
       describe("previous", function () {

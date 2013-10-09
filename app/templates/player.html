@@ -1,8 +1,15 @@
 <h2>Now playing</h2>
-<div class="widget idle">
+<div class="player">
   <% if (collection.selectedModel) { %>
-  Loading…
+  <p class="position"></p>
+  <p class="title"><%= collection.selectedModel.get('title') %></p>
   <% } else { %>
-  No track selected
+  <p>No track selected</p>
   <% } %>
 </div>
+
+<ul class="actions">
+  <li><a class="pause" href="#">Play / Pause</a></li>
+  <li><a class="previous" href="#">Previous track</a></li>
+  <li><a class="next" href="#">Next track</a></li>
+</ul>

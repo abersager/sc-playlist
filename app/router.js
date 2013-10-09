@@ -64,7 +64,7 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
     },
 
     addRandomPlaylist: function () {
-      SoundCloud.get('/playlists/868.json', _.bind(function (playlist) {
+      SoundCloud.get('/playlists/1.json', _.bind(function (playlist) {
         var tracks = _.map(playlist.tracks, function (track) {
           return {
             permalink_url: track.permalink_url

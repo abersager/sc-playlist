@@ -15,8 +15,7 @@ require.config({
     'backbone-localstorage': './lib/backbone.localStorage',
     moment: "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min",
     tpl: "./lib/tpl",
-    soundcloud: "http://connect.soundcloud.com/sdk",
-    'soundcloud-widget': 'https://w.soundcloud.com/player/api'
+    soundcloud: "http://connect.soundcloud.com/sdk"
   },
 
   shim: {

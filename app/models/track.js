@@ -17,9 +17,12 @@ function (Backbone, SoundCloud) {
           }
           this.set('invalid', true);
         } else {
-          track.soundcloudId = track.id
+          var id = track.soundcloudId = track.id;
           delete track.id;
-          this.set(track);
+          this.SoundCloud.stream('/tracks/' + id, _.bind(function (sound) {
+            this.sound = sound;
+            this.set(track);
+          }, this));
         }
       }, this));
     }

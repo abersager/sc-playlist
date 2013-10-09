@@ -70,19 +70,36 @@ function (Backbone, Track) {
      * @param {Boolean} [options.silent=false] Suppress change:selected event
      */
     select: function(index, options) { 
-      if(index === this.selectedIndex) {
-        return;
-      }
-      
       options = _.extend({
         silent: false
       }, options);
 
+      if (index === this.selectedIndex) {
+        return;
+      }
+      
       var model = this.models[index];
+      var changed = !(model && model === this.selectedModel);
 
-      if (this.length) {
+      if (changed && this.selectedModel) {
+        this.selectedModel.sound.stop();
+      }
+
+      if (model && model.sound) {
         this.selectedModel = model;
         this.selectedIndex = index;
+
+        if (changed) {
+          model.sound.play({
+            multiShotEvents: true,
+            onfinish: _.bind(function() {
+              this.next({ wrapAround: true });
+            }, this),
+            whileplaying: _.bind(function () {
+              model.set('position', model.sound.position);
+            }, this)
+          });
+        }
       } else {
         this.selectedModel = null;
         this.selectedIndex = null;

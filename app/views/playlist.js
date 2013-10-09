@@ -13,8 +13,6 @@ function (View, TrackView, template) {
     },
 
     events: {
-      'click a.previous': 'onPrevious',
-      'click a.next': 'onNext',
       'click a.clear': 'onClear',
       'click .dd li': 'onClick',
       'change': 'onChangeOrder'
@@ -37,16 +35,6 @@ function (View, TrackView, template) {
       this.$el.find('.dd').nestable({
         maxDepth: 1
       });
-    },
-
-    onPrevious: function () {
-      this.collection.previous({ wrapAround: true });
-      return false;
-    },
-
-    onNext: function () {
-      this.collection.next({ wrapAround: true });
-      return false;
     },
 
     onClear: function () {

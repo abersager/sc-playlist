@@ -1,41 +1,48 @@
 define([
   'views/view',
-  'tpl!templates/player.html',
-  'soundcloud',
-  'soundcloud-widget'
+  'views/position',
+  'tpl!templates/player.html'
 ],
-function (View, template, SoundCloud) {
+function (View, PositionView, template) {
   var PlayerView = View.extend({
 
     className: 'player',
     template: template,
-    SoundCloud: SoundCloud,
 
     initialize: function () {
-      _.bindAll(this, 'embed', 'onFinish');
       this.listenTo(this.collection, 'change:selected', this.render);
+    },
+
+    events: {
+      'click a.previous': 'onPrevious',
+      'click a.next': 'onNext',
+      'click a.pause': function () {
+        if (this.collection.selectedModel) {
+          this.collection.selectedModel.sound.togglePause();
+        } else {
+          this.collection.select(0);
+        }
+      }
     },
 
     render: function () {
       View.prototype.render.apply(this, arguments);
-
       if (this.collection.selectedModel) {
-        var url = this.collection.selectedModel.get('permalink_url');
-        this.SoundCloud.oEmbed(url, { auto_play: true }, this.embed);
+        new PositionView({
+          model: this.collection.selectedModel,
+          el: this.$el.find('.position')
+        })
       }
     },
 
-    embed: function(oEmbed) {
-      var el = this.$el.find('.widget');
-      el.removeClass('idle');
-      el.html(oEmbed.html);
-      var iframe = this.$el.find('iframe');
-      var widget = this.widget = this.SoundCloud.Widget(iframe[0]);
-      widget.bind(this.SoundCloud.Widget.Events.FINISH, this.onFinish);
+    onPrevious: function () {
+      this.collection.previous({ wrapAround: true });
+      return false;
     },
 
-    onFinish: function () {
+    onNext: function () {
       this.collection.next({ wrapAround: true });
+      return false;
     }
 
   });

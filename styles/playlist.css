@@ -41,16 +41,17 @@ h2, h3 {
   font-weight: 200;
 }
 
-.player .widget {
-  max-width:600px;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
-  height:166px;
+.player {
+  max-width: 600px;
 }
 
-.player .widget.idle {
-  background:#eee;
-  padding:1em;
+p.title {
+  font-weight:500;
+}
+
+p.position {
+  float:right;
+  margin:0;
 }
 
 ul.actions {
@@ -59,20 +60,13 @@ ul.actions {
 }
 ul.actions li {
   float:left;
-}
-ul.actions li a {
-  display:block;
-  text-indent:-999em;
-}
-ul.actions li a.next:before {
-  width:40px;
-  height:40px;
-  content:'▶';
+  margin-right:1em;
 }
 ul.actions:after {
-  clear:both;
   display:block;
+  height:0;
   content:'';
+  clear:left;
 }
 
 .dd {
@@ -116,7 +110,6 @@ ul.actions:after {
 .dd-handle {
     display: block;
     height: 30px;
-    margin: 5px 0;
     padding: 5px 10px;
     color: #333;
     text-decoration: none;
