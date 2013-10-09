@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "grunt-cli": "*",
     "grunt": "~0.4.0",
     "express": "~3.4.0"
   }
