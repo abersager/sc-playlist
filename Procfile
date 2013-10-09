@@ -1,1 +1,1 @@
-web: PORT=80 ./node_modules/grunt/bin/grunt server
+web: PORT=80 node app.js
