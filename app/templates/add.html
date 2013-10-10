@@ -17,17 +17,20 @@
 <% } else { %>
   <h2>How to add tracks</h2>
 
+  <h3>Quickstart</h3>
+  <p><a href="/" class="random">Add a few songs</a> to your playlist</p>
+
+  <h3>Bookmarklet</h3>
   <p>
     Drag the following link to your bookmarks / favorites bar:
-    <a href="<%= href %>">Add to playlist</a>
+    <a class="bookmarklet" href="<%= href %>">Add to playlist</a>
   </p>
 
   <p>
     Browse <a href="https://soundcloud.com">SoundCloud.com</a>. If you find a
-    track you like, click the bookmark to add the track to your playlist.
+    track you like, click the bookmark to add the track to your playlist. This only works on individual track pages.
   </p>
 
-  <p>Alternatively, you can <a href="/" class="random">add a random playlist</a>.</p>
 <% } %>
 
 <p><a href="/">Go to playlist</a></p>
