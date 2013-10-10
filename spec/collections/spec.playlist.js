@@ -193,6 +193,22 @@ function (Playlist, Track) {
         expect(spy.argsForCall[0][0]).toEqual(null);
         expect(spy.argsForCall[0][1]).toEqual(null);
       });
+
+      it("stops the current sound and plays the new sound when the item changes", function () {
+        collection.selectedModel = collection.at(1);
+        collection.selectedIndex = 1;
+        collection.select(2);
+        expect(collection.at(1).sound.stop).toHaveBeenCalled();
+        expect(collection.at(2).sound.play).toHaveBeenCalled();
+      });
+
+      it("does not stop or start the current sound when the item does not change", function () {
+        collection.selectedModel = collection.at(1);
+        collection.selectedIndex = 1;
+        collection.select(1);
+        expect(collection.at(1).sound.stop).not.toHaveBeenCalled();
+        expect(collection.at(1).sound.play).not.toHaveBeenCalled();
+      });
     });
 
     describe("previous / next", function () {
