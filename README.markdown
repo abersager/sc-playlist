@@ -5,8 +5,10 @@ Demo app that allows you to create a playlist from [SoundCloud](https://soundclo
 ## Getting started ##
 
 - Install dependencies: `npm install`
-- Run app: `node app.js`. The app is served at `http://localhost:3000`
 - In order to run tests from the command line, you also need [PhantomJS](http://phantomjs.org/download.html)
+- Run app: `node app.js`. The app is served at `http://localhost:3000`
+
+The node process serves static JS and CSS files and routes all other paths to index.html.
 
 ## Tests ##
 
@@ -22,8 +24,10 @@ Make sure `phantomjs` is available in your `$PATH`. Then run `spec/testrunner.sh
 
 ## Tested ##
 
- - Chrome 29
+ - Chrome 30
  - Safari 6.0
- - Firefox 23
+ - Firefox 24
  - Internet Explorer 10
- - Mobile Safari 6.1
+ - Mobile Safari 7.0
+ - Chrome for iOS 30
+ - Chrome for Android 30
