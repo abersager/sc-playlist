@@ -17,6 +17,10 @@ function (Backbone, Track) {
       this.on('add reset sort', this.save, this);
     },
 
+    /**
+     * Resets collection, updates localstorage accordingly. Preserves current
+     * selection if the selected item is contained in the new set of models.
+     */
     reset: function (models, options) {
       if (!_.isArray(models)) {
         models = models ? [models] : [];
@@ -44,6 +48,10 @@ function (Backbone, Track) {
       this.select(index, { silent: index !== null });
     },
 
+    /**
+     * Removes item from collection and localstorage. Preserves current
+     * selection if the selected item is not the removed one.
+     */
     remove: function (models, options) {
       // preserve current selection if possible
       var selectedModel = this.selectedModel;
@@ -59,6 +67,9 @@ function (Backbone, Track) {
       this.select(index, { silent: index !== null });
     },
 
+    /**
+     * Persists all items to localstorage
+     */
     save: function () {
       this.invoke('save');
     },
@@ -110,6 +121,12 @@ function (Backbone, Track) {
       }
     },
 
+    /**
+     * Selects item before the currently selected item. Selects last item
+     * if nothing is selected.
+     * @param {Object} [options={}] Options
+     * @param {Boolean} [wrapAround=false] Select last item if first one is currently selected
+     */
     previous: function (options) {
       options = _.extend({
         wrapAround: false
@@ -126,6 +143,12 @@ function (Backbone, Track) {
       this.select(index);
     },
     
+    /**
+     * Selects item after the currently selected item. Selects first item
+     * if nothing is selected.
+     * @param {Object} [options={}] Options
+     * @param {Boolean} [wrapAround=false] Select first item if last one is currently selected
+     */
     next: function (options) {
       options = _.extend({
         wrapAround: false
@@ -142,7 +165,6 @@ function (Backbone, Track) {
       this.select(index);
     }
     
-
   });
 
   return Playlist;

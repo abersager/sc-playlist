@@ -26,6 +26,9 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
       "*url": "show404Page"
     },
 
+    /**
+     * Shows currently playing track and playlist
+     */
     index: function () {
 
       var el = $('#main').empty();
@@ -43,8 +46,11 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
       playlistView.render();
     },
 
+    /**
+     * Adds track with provided URL to playlist or show instructions on how
+     * to add tracks.
+     */
     add: function (url) {
-
       var track;
       if (url) {
         this.listenToOnce(this.playlist, 'add', function (model) {
@@ -63,6 +69,10 @@ function (Backbone, SoundCloud, Playlist, PlaylistView, Player, AddView, View404
       view.render();
     },
 
+    /**
+     * Populates playlist with tracks from a pre-defined playlist
+     * for testing purposes
+     */
     addRandomPlaylist: function () {
       SoundCloud.get('/playlists/1.json', _.bind(function (playlist) {
         var tracks = _.map(playlist.tracks, function (track) {
