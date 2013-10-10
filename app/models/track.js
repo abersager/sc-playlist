@@ -7,6 +7,13 @@ function (Backbone, SoundCloud) {
 
     SoundCloud: SoundCloud,
 
+    /**
+     * Updates track details from SoundCloud and initialises soundmanager
+     * for the track object. On mobile, play() needs to be called in
+     * immediate reaction to user interaction - a deferred callback does not
+     * work. The sound object needs to be available for all track objects
+     * to allow users to tap on any track in the playlist.
+     */
     initialize: function (attrs, options) {
       var url = attrs['uri'] || attrs['permalink_url'];
 
